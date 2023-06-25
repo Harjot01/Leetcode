@@ -25,7 +25,7 @@ public:
         {
             nums[i] = vec[i];
         }
-        return count;
+        return count;
 
     }
 };
