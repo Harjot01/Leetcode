@@ -12,7 +12,6 @@ bool searchMatrix(vector<vector<int>> &matrix, int target)
     {
         if (matrix[row][col] == target)
             return true;
-
         else if (matrix[row][col] > target)
             col--;
         else
