@@ -4,6 +4,42 @@ using namespace std;
 
 vector<int> twoSum(vector<int> &nums, int target)
 {
+    vector<int> temp = nums;
+    sort(nums.begin(), nums.end());
+    int left = 0, right = nums.size() - 1;
+    while (left <= right)
+    {
+        int sum = nums[left] + nums[right];
+        if (sum == target)
+        {
+            int elt1, elt2;
+            if (nums[left] == nums[right])
+            {
+                auto it1 = find(temp.begin(), temp.end(), nums[left]);
+                auto it2 = find(temp.begin() + (left + 1), temp.end(), nums[right]);
+                elt1 = it1 - temp.begin();
+                elt2 = it2 - temp.begin();
+            }
+            else
+            {
+
+                auto it1 = find(temp.begin(), temp.end(), nums[left]);
+                auto it2 = find(temp.begin(), temp.end(), nums[right]);
+                elt1 = it1 - temp.begin();
+                elt2 = it2 - temp.begin();
+            }
+            return {elt1, elt2};
+        }
+        else if (sum < target)
+            left++;
+        else
+            right--;
+    }
+    return {-1, -1};
+}
+
+vector<int> twoSum(vector<int> &nums, int target)
+{
     unordered_map<int, int> map;
     vector<int> result;
 
@@ -24,8 +60,8 @@ vector<int> twoSum(vector<int> &nums, int target)
 
 int main()
 {
-    vector<int> nums = {2, 7, 11, 15};
-    vector<int> result = twoSum(nums, 9);
+    vector<int> nums = {2, 6, 5, 8, 11};
+    vector<int> result = twoSum(nums, 14);
     for (auto v : result)
     {
         cout << v << " ";
